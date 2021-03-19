@@ -41,7 +41,11 @@ playground.xcworkspace
 # Package.pins
 # Package.resolved
 # *.xcodeproj
+<<<<<<< HEAD
 
+=======
+#
+>>>>>>> 0be1829cfcdcd43cd3312682a8d362cd4a96ad28
 # Xcode automatically generates this directory with a .xcworkspacedata file and xcuserdata
 # hence it is not needed unless you have added a package configuration file to your project
 # .swiftpm
