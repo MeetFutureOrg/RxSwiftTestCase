@@ -1,0 +1,68 @@
+disabled_rules: # 执行时排除掉的规则
+    - identifier_name
+    - opening_brace
+    - closure_parameter_position
+    - large_tuple
+    - notification_center_detachment
+    - multiple_closures_with_trailing_closure
+    - for_where
+    - block_based_kvo
+    - switch_case_alignment
+    - nesting
+    
+opt_in_rules: # 一些规则仅仅是可选的
+    - empty_count
+
+# 可以通过执行如下指令来查找所有可用的规则:
+# swiftlint rules
+
+# 请注意,所有规则自定义内容对缩进要求非常严格.请注意官方文档.
+# 规则文档:https://github.com/realm/SwiftLint#configuration
+# 禁用指定代码位置规则不扫描 // swiftlint:disable <rule>
+
+excluded: # 忽略检查的目录，优先级比included高
+  - Carthage
+  - Pods
+  - .build
+  - SwiftTestCase/Vendor
+  - SwiftTestCase/Extensions/Rx
+
+no_fallthrough_only:
+  severity: error
+
+force_cast:
+  severity: error
+
+empty_count:
+  severity: error
+
+cyclomatic_complexity:
+  warning: 60
+  error: 60
+
+type_name:
+  min_length: 
+    warning: 2
+    error: 2
+  max_length:
+    warning: 50
+    error: 50
+
+function_parameter_count:
+  warning: 8
+  error: 8
+
+type_body_length:
+  warning: 800
+  error: 800
+
+file_length:
+  warning: 800
+  error: 800
+
+function_body_length:
+  warning: 150
+  error: 150
+
+reporter: "xcode" # 报告类型 (xcode, json, csv, checkstyle, junit, html, emoji)
+

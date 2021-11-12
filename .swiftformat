@@ -1,0 +1,46 @@
+# file options
+--exclude Pods
+
+# rules
+--allman false
+--binarygrouping none
+--closingparen balanced
+--commas inline
+--conflictmarkers reject
+--decimalgrouping none
+--elseposition same-line
+--exponentcase lowercase
+--exponentgrouping disabled
+--fractiongrouping disabled
+--fragment false
+--header ignore
+--hexgrouping none
+--hexliteralcase lowercase
+--ifdef no-indent
+--importgrouping alphabetized
+--indent 4
+--indentcase false
+--linebreaks lf
+--maxwidth 100
+--modifierorder 
+--nospaceoperators ...,..<
+--nowrapoperators 
+--octalgrouping none
+--operatorfunc spaced
+--patternlet inline
+--self remove
+--selfrequired 
+--semicolons inline
+--shortoptionals always
+--smarttabs enabled
+--stripunusedargs closure-only
+--tabwidth unspecified
+--trailingclosures 
+--trimwhitespace always
+--voidtype void
+--wraparguments before-first
+--wrapcollections before-first
+--wrapparameters before-first
+--xcodeindentation disabled
+--yodaswap always
+--disable redundantInit,blankLinesAtStartOfScope,blankLinesAtEndOfScope,initCoderUnavailable,enumNamespaces
