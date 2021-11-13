@@ -122,6 +122,9 @@
 		A4B27253273E577000DE7B29 /* TextViewDelegateForwarder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B27241273E577000DE7B29 /* TextViewDelegateForwarder.swift */; };
 		A4B27254273E577000DE7B29 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B27242273E577000DE7B29 /* Configuration.swift */; };
 		A4B27257273E5E9300DE7B29 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B27256273E5E9300DE7B29 /* UIImageExtensions.swift */; };
+		A4C28811273FF36E00B85857 /* Codextended.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C28810273FF36E00B85857 /* Codextended.swift */; };
+		A4C28813273FF39E00B85857 /* ArrangementButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C28812273FF39E00B85857 /* ArrangementButton.swift */; };
+		A4C28815273FF46F00B85857 /* CGGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C28814273FF46F00B85857 /* CGGeometry.swift */; };
 		A4C72B6926037CE6000EB803 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C72B6826037CE6000EB803 /* AppDelegate.swift */; };
 		A4C72B6B26037CE6000EB803 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C72B6A26037CE6000EB803 /* SceneDelegate.swift */; };
 		A4C72B7226037CE8000EB803 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4C72B7126037CE8000EB803 /* Assets.xcassets */; };
@@ -299,6 +302,9 @@
 		A4B27241273E577000DE7B29 /* TextViewDelegateForwarder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewDelegateForwarder.swift; sourceTree = "<group>"; };
 		A4B27242273E577000DE7B29 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		A4B27256273E5E9300DE7B29 /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
+		A4C28810273FF36E00B85857 /* Codextended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codextended.swift; sourceTree = "<group>"; };
+		A4C28812273FF39E00B85857 /* ArrangementButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrangementButton.swift; sourceTree = "<group>"; };
+		A4C28814273FF46F00B85857 /* CGGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGGeometry.swift; sourceTree = "<group>"; };
 		A4C72B6526037CE6000EB803 /* SwiftTestCase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTestCase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4C72B6826037CE6000EB803 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4C72B6A26037CE6000EB803 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -497,7 +503,9 @@
 		A467D4DB262DC78500E949F6 /* UI-Components */ = {
 			isa = PBXGroup;
 			children = (
+				A4C28812273FF39E00B85857 /* ArrangementButton.swift */,
 				A4B27230273E577000DE7B29 /* TwitterTextEditor */,
+				A4C28814273FF46F00B85857 /* CGGeometry.swift */,
 			);
 			path = "UI-Components";
 			sourceTree = "<group>";
@@ -509,6 +517,7 @@
 				A42F802B262F2F06002DDAFD /* CAAnimationUtils.swift */,
 				A42F8052262F2FBC002DDAFD /* UIKitUtils.swift */,
 				A42F8030262F2F7D002DDAFD /* UIKitRuntimeUtils */,
+				A4C28810273FF36E00B85857 /* Codextended.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1176,6 +1185,7 @@
 				A48A0AA12680656500E91B5A /* pausableBuffered.swift in Sources */,
 				A48A0A45268063D900E91B5A /* CHTCollectionViewWaterfallLayout.swift in Sources */,
 				A4B27247273E577000DE7B29 /* Sequence.swift in Sources */,
+				A4C28815273FF46F00B85857 /* CGGeometry.swift in Sources */,
 				A48A0A4B268064BD00E91B5A /* RxAlamofire.swift in Sources */,
 				A42F804B262F2F7E002DDAFD /* NSWeakReference.m in Sources */,
 				A48A0AA72680669E00E91B5A /* KingfisherManager+Rx.swift in Sources */,
@@ -1197,6 +1207,7 @@
 				A48A0A512680652100E91B5A /* LocalizerConfig.swift in Sources */,
 				A48A0AC42680682000E91B5A /* JTACCollectionMonthViewDelegates.swift in Sources */,
 				A48A0A912680656500E91B5A /* distinct.swift in Sources */,
+				A4C28813273FF39E00B85857 /* ArrangementButton.swift in Sources */,
 				A48A0AC92680682000E91B5A /* JTACDayCell.swift in Sources */,
 				A48A0AD32680682000E91B5A /* JTACMonthLayoutProtocol.swift in Sources */,
 				A48A0ACA2680682000E91B5A /* JTACScrollViewDelegates.swift in Sources */,
@@ -1258,6 +1269,7 @@
 				A4B27245273E577000DE7B29 /* Logger.swift in Sources */,
 				A48A0A9C2680656500E91B5A /* nwise.swift in Sources */,
 				A48A0ACE2680682000E91B5A /* JTACVariables.swift in Sources */,
+				A4C28811273FF36E00B85857 /* Codextended.swift in Sources */,
 				A42F802C262F2F06002DDAFD /* CAAnimationUtils.swift in Sources */,
 				A4C72CF626044D29000EB803 /* NSObject+Rx.swift in Sources */,
 				A42F8062262F3410002DDAFD /* WindowContent.swift in Sources */,
