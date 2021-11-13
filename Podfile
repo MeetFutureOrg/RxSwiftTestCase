@@ -49,6 +49,7 @@ target 'SwiftTestCase' do
   
   ## Toasts
   pod 'NVActivityIndicatorView', '~> 5.1.1' # NVActivityIndicatorView is a collection of awesome loading animations.
+  pod 'SwiftMessages', '~> 9.0.5' # A very flexible message bar for iOS written in Swift.
   pod 'Toast-Swift', '~> 5.0.1' # Toast-Swift is a Swift extension that adds toast notifications to the UIView object class. It is intended to be simple, lightweight, and easy to use. Most toast notifications can be triggered with a single line of code.
   pod 'SwiftEntryKit', '~> 2.0.0' # SwiftEntryKit is a presentation library for iOS. It can be used to easily display overlays within your iOS apps.
   

@@ -31,14 +31,14 @@ class TabBarController: ASTabBarController {
 
         let firstTitle = "First"
         let secondTitle = "Second"
-        
+
         let iconSize = CGSize(width: 24, height: 24)
         let firstIcon: UIImage = .init(color: .blue, size: iconSize)
         let secondIcon: UIImage = .init(color: .blue, size: iconSize)
-        
+
         let firstItem = UITabBarItem(title: firstTitle, image: firstIcon, selectedImage: nil)
         let secondItem = UITabBarItem(title: secondTitle, image: secondIcon, selectedImage: nil)
-        
+
         first.tabBarItem = firstItem
         second.tabBarItem = secondItem
         setViewControllers(

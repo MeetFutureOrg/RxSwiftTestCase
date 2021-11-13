@@ -101,7 +101,7 @@ class ViewController: ASDKViewController<ASDisplayNode> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .blue
     }
 
     override func viewWillAppear(_ animated: Bool) {
