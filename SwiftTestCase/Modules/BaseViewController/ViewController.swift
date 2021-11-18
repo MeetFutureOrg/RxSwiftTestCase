@@ -6,8 +6,8 @@
 //  Copyright © 2021 Appest. All rights reserved.
 //
 
-import AsyncDisplayKit
 import RxSwift
+import SnapKit
 import UIKit
 
 protocol StandalonePresentableController: ViewController {}
@@ -89,28 +89,51 @@ enum TabBarItemContextActionType {
     case whenActive
 }
 
-class ViewController: ASDKViewController<ASDisplayNode> {
+private enum Section: Int, CaseIterable {
+    case firstly
+    case secondary
+}
 
-    override init() {
-        super.init()
-    }
+class ViewController: ASReorderTableViewController {
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
+    private var items: [[String]] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let list1 = [10, 0, 3, 9, 2, 14, 8, 27, 1, 5, 8, -1, 26]
-        let result = quicksort(list1)
-        print(result)
-        var list2 = [10, 0, 3, 9, 2, 14, 26, 27, 1, 5, 8, -1, 8]
-        quicksortLomuto(&list2, low: 0, high: list2.count - 1)
-        print(list2)
-        var list3 = [8, 0, 3, 9, 2, 14, 10, 27, 1, 5, 8, -1, 26]
-        quicksortHoare(&list3, low: 0, high: list3.count - 1)
-        print(list3)
+        dragDelegate = self
+        tableView.register(
+            UINib(nibName: "ReorderTableViewCell", bundle: nil),
+            forCellReuseIdentifier: "ReorderTableViewCell"
+        )
+        tableView.register(
+            UINib(nibName: "HeaderFooterView", bundle: nil),
+            forHeaderFooterViewReuseIdentifier: "HeaderFooterView"
+        )
+        tableView.delegate = self
+        tableView.dataSource = self
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
+        tableView.separatorStyle = .none
+
+        Section.allCases.forEach { section in
+            items.append(
+                (0..<(section == .firstly ? 4 : 3)).map { row in
+                    "Item #\(row + 1)"
+                }
+            )
+        }
+
+//        let list1 = [10, 0, 3, 9, 2, 14, 8, 27, 1, 5, 8, -1, 26]
+//        let result = quicksort(list1)
+//        print(result)
+//        var list2 = [10, 0, 3, 9, 2, 14, 26, 27, 1, 5, 8, -1, 8]
+//        quicksortLomuto(&list2, low: 0, high: list2.count - 1)
+//        print(list2)
+//        var list3 = [8, 0, 3, 9, 2, 14, 10, 27, 1, 5, 8, -1, 26]
+//        quicksortHoare(&list3, low: 0, high: list3.count - 1)
+//        print(list3)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -118,50 +141,160 @@ class ViewController: ASDKViewController<ASDisplayNode> {
 
     }
 
-    func quicksort<T: Comparable>(_ a: [T]) -> [T] {
-        guard a.count > 1 else { return a }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
-        let pivot = a[a.count / 2]
-        let less = a.filter { $0 < pivot }
-        let equal = a.filter { $0 == pivot }
-        let greater = a.filter { $0 > pivot }
+        tableView.flashScrollIndicators()
+    }
+}
 
-        return quicksort(less) + equal + quicksort(greater)
+// MARK: UITableViewDataSource & UITableViewDelegate
+
+extension ViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        items.count
     }
 
-    // *** Using Lomuto partitioning ***
-    /*
-       Lomuto's partitioning algorithm.
-       The return value is the index of the pivot element in the new array. The left
-       partition is [low...p-1]; the right partition is [p+1...high], where p is the
-       return value.
-     */
-    func partitionLomuto<T: Comparable>(_ a: inout [T], low: Int, high: Int) -> Int {
-        let pivot = a[high]
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        items[section].count
+    }
 
-        var i = low
-        for j in low..<high {
-            if a[j] <= pivot {
-                a.swapAt(i, j)
-                i += 1
-            }
+    override func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
+        guard let cell = tableView
+            .dequeueReusableCell(withIdentifier: "ReorderTableViewCell") as? ReorderTableViewCell
+        else {
+            return UITableViewCell()
         }
-
-        a.swapAt(i, high)
-        return i
+        cell.provide(items[indexPath.section][indexPath.row])
+        return cell
     }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        print("Tapped \(items[indexPath.section][indexPath.row])")
+    }
+
+    override func tableView(
+        _ tableView: UITableView,
+        heightForRowAt indexPath: IndexPath
+    ) -> CGFloat {
+        44
+    }
+
+    override func tableView(
+        _ tableView: UITableView,
+        heightForHeaderInSection section: Int
+    ) -> CGFloat {
+        24
+    }
+
+    override func tableView(
+        _ tableView: UITableView,
+        viewForHeaderInSection section: Int
+    ) -> UIView? {
+        guard let header = tableView
+            .dequeueReusableHeaderFooterView(
+                withIdentifier: "HeaderFooterView"
+            ) as? HeaderFooterView
+        else {
+            return UIView()
+        }
+        header.provide("Section #\(section)")
+        return header
+    }
+
+    override func tableView(
+        _ tableView: UITableView,
+        moveRowAt sourceIndexPath: IndexPath,
+        to destinationIndexPath: IndexPath
+    ) {
+        var sourceSection = items[sourceIndexPath.section]
+        var destinationSection = items[destinationIndexPath.section]
+        let itemToMove = sourceSection[sourceIndexPath.row]
+        sourceSection.remove(at: sourceIndexPath.row)
+
+        if sourceIndexPath.section != destinationIndexPath.section {
+            destinationSection.insert(itemToMove, at: destinationIndexPath.row)
+            items[destinationIndexPath.section] = destinationSection
+        } else {
+            sourceSection.insert(itemToMove, at: destinationIndexPath.row)
+        }
+        items[sourceIndexPath.section] = sourceSection
+    }
+
+}
+
+// MARK: ASReorderTableViewControllerDraggableIndicators
+
+extension ViewController {
+    override func cellIdenticalToCell(
+        at indexPath: IndexPath,
+        forDrag dragTableViewController: ASReorderTableViewController
+    ) -> UITableViewCell {
+        let cell = ReorderTableViewCell.loadFromNib()
+        cell.titleLabel.text = items[indexPath.section][indexPath.row]
+        return cell
+    }
+}
+
+// MARK: ASReorderTableViewControllerDelegate
+
+extension ViewController: ASReorderTableViewControllerDelegate {
+    func drag(
+        _ dragTableViewController: ASReorderTableViewController,
+        didEndDraggingToRow destinationIndexPath: IndexPath
+    ) {
+        print("Dragging End.")
+    }
+}
+
+//    func quicksort<T: Comparable>(_ a: [T]) -> [T] {
+//        guard a.count > 1 else { return a }
+//
+//        let pivot = a[a.count / 2]
+//        let less = a.filter { $0 < pivot }
+//        let equal = a.filter { $0 == pivot }
+//        let greater = a.filter { $0 > pivot }
+//
+//        return quicksort(less) + equal + quicksort(greater)
+//    }
+
+// *** Using Lomuto partitioning ***
+/*
+   Lomuto's partitioning algorithm.
+   The return value is the index of the pivot element in the new array. The left
+   partition is [low...p-1]; the right partition is [p+1...high], where p is the
+   return value.
+ */
+//    func partitionLomuto<T: Comparable>(_ a: inout [T], low: Int, high: Int) -> Int {
+//        let pivot = a[high]
+//
+//        var i = low
+//        for j in low..<high {
+//            if a[j] <= pivot {
+//                a.swapAt(i, j)
+//                i += 1
+//            }
+//        }
+//
+//        a.swapAt(i, high)
+//        return i
+//    }
 
 //    var list2 = [ 10, 0, 3, 9, 2, 14, 26, 27, 1, 5, 8, -1, 8 ]
 //    partitionLomuto(&list2, low: 0, high: list2.count - 1)
 //    list2
 //
-    func quicksortLomuto<T: Comparable>(_ a: inout [T], low: Int, high: Int) {
-        if low < high {
-            let p = partitionLomuto(&a, low: low, high: high)
-            quicksortLomuto(&a, low: low, high: p - 1)
-            quicksortLomuto(&a, low: p + 1, high: high)
-        }
-    }
+//    func quicksortLomuto<T: Comparable>(_ a: inout [T], low: Int, high: Int) {
+//        if low < high {
+//            let p = partitionLomuto(&a, low: low, high: high)
+//            quicksortLomuto(&a, low: low, high: p - 1)
+//            quicksortLomuto(&a, low: p + 1, high: high)
+//        }
+//    }
 
 //
 //    quicksortLomuto(&list2, low: 0, high: list2.count - 1)
@@ -174,35 +307,35 @@ class ViewController: ASDKViewController<ASDisplayNode> {
 //      where p is the return value. The pivot value is placed somewhere inside one
 //      of the two partitions, but the algorithm doesn't tell you which one or where.
 //    */
-    func partitionHoare<T: Comparable>(_ a: inout [T], low: Int, high: Int) -> Int {
-        let pivot = a[low]
-        var i = low - 1
-        var j = high + 1
-
-        while true {
-            repeat { j -= 1 } while a[j] > pivot
-            repeat { i += 1 } while a[i] < pivot
-
-            if i < j {
-                a.swapAt(i, j)
-            } else {
-                return j
-            }
-        }
-    }
+//    func partitionHoare<T: Comparable>(_ a: inout [T], low: Int, high: Int) -> Int {
+//        let pivot = a[low]
+//        var i = low - 1
+//        var j = high + 1
+//
+//        while true {
+//            repeat { j -= 1 } while a[j] > pivot
+//            repeat { i += 1 } while a[i] < pivot
+//
+//            if i < j {
+//                a.swapAt(i, j)
+//            } else {
+//                return j
+//            }
+//        }
+//    }
 
 //
 //    var list3 = [ 8, 0, 3, 9, 2, 14, 10, 27, 1, 5, 8, -1, 26 ]
 //    partitionHoare(&list3, low: 0, high: list3.count - 1)
 //    list3
 //
-    func quicksortHoare<T: Comparable>(_ a: inout [T], low: Int, high: Int) {
-        if low < high {
-            let p = partitionHoare(&a, low: low, high: high)
-            quicksortHoare(&a, low: low, high: p)
-            quicksortHoare(&a, low: p + 1, high: high)
-        }
-    }
+//    func quicksortHoare<T: Comparable>(_ a: inout [T], low: Int, high: Int) {
+//        if low < high {
+//            let p = partitionHoare(&a, low: low, high: high)
+//            quicksortHoare(&a, low: low, high: p)
+//            quicksortHoare(&a, low: p + 1, high: high)
+//        }
+//    }
 //
 //    quicksortHoare(&list3, low: 0, high: list3.count - 1)
 //
@@ -279,4 +412,4 @@ class ViewController: ASDKViewController<ASDisplayNode> {
 //    }
 //
 //    quicksortDutchFlag(&list5, low: 0, high: list5.count - 1)
-}
+// }

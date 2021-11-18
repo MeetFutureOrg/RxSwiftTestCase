@@ -26,26 +26,15 @@ class TabBarController: ASTabBarController {
 
     private func setupChildControllers() {
 
-        let first = ViewController()
-        let second = ViewController()
+        let viewController = ViewController()
 
-        let firstTitle = "First"
-        let secondTitle = "Second"
+        let title = "Demos"
 
-        let iconSize = CGSize(width: 24, height: 24)
-        let firstIcon: UIImage = .init(color: .blue, size: iconSize)
-        let secondIcon: UIImage = .init(color: .blue, size: iconSize)
+        let item = UITabBarItem(title: title, image: nil, selectedImage: nil)
 
-        let firstItem = UITabBarItem(title: firstTitle, image: firstIcon, selectedImage: nil)
-        let secondItem = UITabBarItem(title: secondTitle, image: secondIcon, selectedImage: nil)
-
-        first.tabBarItem = firstItem
-        second.tabBarItem = secondItem
+        viewController.tabBarItem = item
         setViewControllers(
-            [
-                NavigationController(rootViewController: first),
-                NavigationController(rootViewController: second)
-            ],
+            [NavigationController(rootViewController: viewController)],
             animated: false
         )
     }

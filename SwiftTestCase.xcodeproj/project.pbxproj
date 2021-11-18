@@ -32,6 +32,11 @@
 		A42F8067262F343F002DDAFD /* PresentationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42F8066262F343F002DDAFD /* PresentationContext.swift */; };
 		A42F806F262F34E8002DDAFD /* ContainerViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42F806E262F34E8002DDAFD /* ContainerViewLayout.swift */; };
 		A42F8074262F351B002DDAFD /* DeviceMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42F8073262F351B002DDAFD /* DeviceMetrics.swift */; };
+		A459298A27468AC9004711CC /* ASReorderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A459298927468AC9004711CC /* ASReorderTableViewController.m */; };
+		A4592990274690CC004711CC /* ReorderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459298E274690CC004711CC /* ReorderTableViewCell.swift */; };
+		A4592991274690CC004711CC /* ReorderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A459298F274690CC004711CC /* ReorderTableViewCell.xib */; };
+		A45929952746A118004711CC /* HeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45929942746A118004711CC /* HeaderFooterView.swift */; };
+		A45929972746A11D004711CC /* HeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A45929962746A11D004711CC /* HeaderFooterView.xib */; };
 		A467D236262C936700E949F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A467D235262C936700E949F6 /* GoogleService-Info.plist */; };
 		A467D6B6262DD41B00E949F6 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A467D6B5262DD41B00E949F6 /* NavigationController.swift */; };
 		A48A0A45268063D900E91B5A /* CHTCollectionViewWaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48A0A44268063D900E91B5A /* CHTCollectionViewWaterfallLayout.swift */; };
@@ -211,6 +216,12 @@
 		A42F8066262F343F002DDAFD /* PresentationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationContext.swift; sourceTree = "<group>"; };
 		A42F806E262F34E8002DDAFD /* ContainerViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewLayout.swift; sourceTree = "<group>"; };
 		A42F8073262F351B002DDAFD /* DeviceMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMetrics.swift; sourceTree = "<group>"; };
+		A459298827468AC9004711CC /* ASReorderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASReorderTableViewController.h; sourceTree = "<group>"; };
+		A459298927468AC9004711CC /* ASReorderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASReorderTableViewController.m; sourceTree = "<group>"; };
+		A459298E274690CC004711CC /* ReorderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderTableViewCell.swift; sourceTree = "<group>"; };
+		A459298F274690CC004711CC /* ReorderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReorderTableViewCell.xib; sourceTree = "<group>"; };
+		A45929942746A118004711CC /* HeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderFooterView.swift; sourceTree = "<group>"; };
+		A45929962746A11D004711CC /* HeaderFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderFooterView.xib; sourceTree = "<group>"; };
 		A467D228262C90B200E949F6 /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GPUImage.framework; sourceTree = "<group>"; };
 		A467D235262C936700E949F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A467D6B5262DD41B00E949F6 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
@@ -388,6 +399,10 @@
 			isa = PBXGroup;
 			children = (
 				A42F8003262F2B15002DDAFD /* ViewController.swift */,
+				A459298E274690CC004711CC /* ReorderTableViewCell.swift */,
+				A459298F274690CC004711CC /* ReorderTableViewCell.xib */,
+				A45929942746A118004711CC /* HeaderFooterView.swift */,
+				A45929962746A11D004711CC /* HeaderFooterView.xib */,
 			);
 			path = BaseViewController;
 			sourceTree = "<group>";
@@ -503,6 +518,8 @@
 		A467D4DB262DC78500E949F6 /* UI-Components */ = {
 			isa = PBXGroup;
 			children = (
+				A459298827468AC9004711CC /* ASReorderTableViewController.h */,
+				A459298927468AC9004711CC /* ASReorderTableViewController.m */,
 				A4C28812273FF39E00B85857 /* ArrangementButton.swift */,
 				A4B27230273E577000DE7B29 /* TwitterTextEditor */,
 				A4C28814273FF46F00B85857 /* CGGeometry.swift */,
@@ -969,8 +986,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4C72B7526037CE8000EB803 /* LaunchScreen.storyboard in Resources */,
+				A45929972746A11D004711CC /* HeaderFooterView.xib in Resources */,
 				A467D236262C936700E949F6 /* GoogleService-Info.plist in Resources */,
 				A4C72B7226037CE8000EB803 /* Assets.xcassets in Resources */,
+				A4592991274690CC004711CC /* ReorderTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1203,6 +1222,7 @@
 				A4C72CF726044D29000EB803 /* HasDisposeBag.swift in Sources */,
 				A4B27246273E577000DE7B29 /* NotificationCenter.swift in Sources */,
 				A48A0A8A2680656500E91B5A /* catchErrorJustComplete.swift in Sources */,
+				A459298A27468AC9004711CC /* ASReorderTableViewController.m in Sources */,
 				A48A0A872680656500E91B5A /* ignoreWhen.swift in Sources */,
 				A48A0A512680652100E91B5A /* LocalizerConfig.swift in Sources */,
 				A48A0AC42680682000E91B5A /* JTACCollectionMonthViewDelegates.swift in Sources */,
@@ -1250,6 +1270,7 @@
 				A48A0AA62680669E00E91B5A /* Kingfisher+Rx.swift in Sources */,
 				A42F8049262F2F7E002DDAFD /* UIKitUtils.m in Sources */,
 				A48A0AC72680682000E91B5A /* CalendarEnums.swift in Sources */,
+				A4592990274690CC004711CC /* ReorderTableViewCell.swift in Sources */,
 				A4C72B6B26037CE6000EB803 /* SceneDelegate.swift in Sources */,
 				A48A0AC32680682000E91B5A /* JTACMonthActionFunctions.swift in Sources */,
 				A48A0A4A268064BD00E91B5A /* URLSession+RxAlamofire.swift in Sources */,
@@ -1267,6 +1288,7 @@
 				A48A0A902680656500E91B5A /* toSortedArray.swift in Sources */,
 				A4B27249273E577000DE7B29 /* UITextInput.swift in Sources */,
 				A4B27245273E577000DE7B29 /* Logger.swift in Sources */,
+				A45929952746A118004711CC /* HeaderFooterView.swift in Sources */,
 				A48A0A9C2680656500E91B5A /* nwise.swift in Sources */,
 				A48A0ACE2680682000E91B5A /* JTACVariables.swift in Sources */,
 				A4C28811273FF36E00B85857 /* Codextended.swift in Sources */,
