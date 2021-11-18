@@ -152,7 +152,7 @@ final class TextView: UITextView {
             if pasteboardChangedNotificationObserverToken == nil {
                 pasteboardChangedNotificationObserverToken =
                     NotificationCenter.default.addObserver(
-                        forName: UIPasteboard.changedNotification,
+                        UIPasteboard.changedNotification,
                         object: nil,
                         queue: nil
                     ) { [weak self] _ in
@@ -162,7 +162,7 @@ final class TextView: UITextView {
             if applicationWillEnterForegroundNotificationObserverToken == nil {
                 applicationWillEnterForegroundNotificationObserverToken =
                     NotificationCenter.default.addObserver(
-                        forName: UIApplication.willEnterForegroundNotification,
+                        UIApplication.willEnterForegroundNotification,
                         object: nil,
                         queue: nil
                     ) { [weak self] _ in

@@ -17,9 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
 
-        if #available(iOS 13.0, *) {
-            return true
-        }
         window = UIWindow(frame: UIScreen.main.bounds)
         let rootViewController = TabBarController()
         window?.rootViewController = rootViewController

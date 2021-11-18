@@ -32,7 +32,7 @@ final class NotificationObserverToken {
 
 extension NotificationCenter {
     func addObserver(
-        forName name: NSNotification.Name?,
+        _ name: NSNotification.Name?,
         object: Any?,
         queue: OperationQueue?,
         using block: @escaping (Notification) -> Void

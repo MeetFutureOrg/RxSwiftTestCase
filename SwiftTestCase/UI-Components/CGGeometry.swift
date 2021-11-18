@@ -94,3 +94,9 @@ extension CGRect {
         )
     }
 }
+
+extension CGSize {
+    init(_ width: CGFloat, _ height: CGFloat) {
+        self.init(width: width, height: height)
+    }
+}
